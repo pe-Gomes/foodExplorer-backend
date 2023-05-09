@@ -10,7 +10,7 @@ async function ensureSudo(req, res, next) {
   if (isAdmin) {
     return next();
   } else {
-    throw new AppError("Acesso restrito.")
+    throw new AppError("Acesso restrito.", 401)
   }
 }
 

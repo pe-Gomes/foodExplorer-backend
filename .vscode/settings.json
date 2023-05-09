@@ -3,6 +3,7 @@
     "datetime",
     "foodexplorer",
     "knexfile",
+    "originalname",
     "sqlite"
   ]
 }
