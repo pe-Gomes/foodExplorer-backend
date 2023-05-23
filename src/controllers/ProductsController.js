@@ -131,7 +131,7 @@ class ProductsController {
   }
 
   async index(req, res) {
-    const { search, all } = req.query
+    const { search  } = req.query
     const user_id = req.user.id
 
     let products
@@ -190,22 +190,8 @@ class ProductsController {
         favorites: filteredFavorites,
       }
     })
-
-    if (!all) {
-      const productsByCategory = productsInformation.reduce(
-        (productsByCategory, eachProduct) => {
-          productsByCategory[eachProduct.categories[0].name] =
-            productsByCategory[eachProduct.categories[0].name] || []
-          productsByCategory[eachProduct.categories[0].name].push(eachProduct)
-          return productsByCategory
-        },
-        {},
-      )
-
-      return res.json(productsByCategory)
-    } else {
-      return res.json(productsInformation)
-    }
+    
+    res.json(productsInformation)
   }
 }
 
