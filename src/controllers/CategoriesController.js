@@ -15,10 +15,10 @@ class CategoriesController {
 
       const productByCategory = indexCategory.map((entry) => {
         const filteredProducts = allProducts.filter(
-          (product) => product.id == entry.product_id,
+          (product) => product.id === entry.product_id,
         )
         const filteredFavorites = allFavorites.filter(
-          (favorite) => favorite.product_id == entry.product_id,
+          (favorite) => favorite.product_id === entry.product_id,
         )
         return {
           ...entry,
@@ -36,13 +36,13 @@ class CategoriesController {
 
       const productsInformation = allProducts.map((product) => {
         const productIngredients = allIngredients.filter(
-          (ingredient) => ingredient.product_id == product.id,
+          (ingredient) => ingredient.product_id === product.id,
         )
         const productCategory = allCategories.filter(
-          (category) => category.product_id == product.id,
+          (category) => category.product_id === product.id,
         )
         const filteredFavorites = userFavorites.filter(
-          (favorite) => favorite.product_id == product.id,
+          (favorite) => favorite.product_id === product.id,
         )
 
         return {

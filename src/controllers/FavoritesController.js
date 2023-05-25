@@ -30,7 +30,7 @@ class FavoritesController {
 
     const productsWithFavorites = allProducts.map((product) => {
       const usersFavorites = favorites.filter(
-        (favorite) => favorite.product_id == product.id,
+        (favorite) => favorite.product_id === product.id,
       )
       return {
         ...product,
