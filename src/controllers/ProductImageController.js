@@ -1,39 +1,24 @@
-const knex = require('../database/knex')
-const AppError = require('../utils/AppError')
-const DiskStorage = require('../providers/DiskStorage')
+const ProductImageRepository = require('../repositories/ProductImageRepository')
+const ProductImageService = require('../services/ProductImageService')
 
 class ProductImageController {
   async update(req, res) {
     const { id: product_id } = req.params
     const imgName = req.file.filename
 
-    const diskStorage = new DiskStorage()
+    const productImageRepository = new ProductImageRepository()
+    const productImageService = new ProductImageService(productImageRepository)
+    const fileName = await productImageService.update(product_id, imgName)
 
-    const product = await knex('products').where('id', product_id).first()
-
-    if (!product) {
-      throw new AppError(
-        'Somente produtos cadastrados podem atualizar a imagem.',
-      )
-    }
-
-    if (product.image) {
-      await diskStorage.deleteFile(product.image)
-    }
-
-    const fileName = await diskStorage.saveFile(imgName)
-    product.image = fileName
-
-    await knex('products').update(product).where('id', product_id)
-
-    return res.json(product)
+    return res.json({ image: fileName })
   }
 
   async create(req, res) {
     const imgName = req.file.filename
-    const diskStorage = new DiskStorage()
 
-    const fileName = await diskStorage.saveFile(imgName)
+    const productImageRepository = new ProductImageRepository()
+    const productImageService = new ProductImageService(productImageRepository)
+    const fileName = await productImageService.create(imgName)
 
     return res.json({ image: fileName })
   }
