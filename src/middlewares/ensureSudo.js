@@ -5,7 +5,7 @@ async function ensureSudo(req, res, next) {
   const user_id = req.user.id
 
   const user = await knex('users').where('id', user_id).first()
-  const isAdmin = user.admin === true
+  const isAdmin = user.admin === 1
 
   if (isAdmin) {
     return next()
