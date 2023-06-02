@@ -1,3 +1,4 @@
+const DiskStorage = require('../providers/DiskStorage')
 const AppError = require('../utils/AppError')
 
 class ProductCreateService {
@@ -58,14 +59,20 @@ class ProductCreateService {
     return productUpdated
   }
 
-  async delete({ id }) {
-    const product = this.productRepository.findById({ id })
+  async delete(product_id) {
+    const product = await this.productRepository.findById(product_id)
 
     if (!product) {
       throw new AppError('O produto não foi encontrado.')
     }
 
-    return await this.productRepository.delete({ id })
+    if (product.image) {
+      const diskStorage = new DiskStorage()
+
+      await diskStorage.deleteFile(product.image)
+    }
+
+    return await this.productRepository.delete(product_id)
   }
 
   async show({ id }) {

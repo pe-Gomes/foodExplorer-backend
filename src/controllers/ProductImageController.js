@@ -10,7 +10,7 @@ class ProductImageController {
     const productImageService = new ProductImageService(productImageRepository)
     const fileName = await productImageService.update(product_id, imgName)
 
-    return res.json({ image: fileName })
+    return res.json(fileName)
   }
 
   async create(req, res) {
@@ -20,7 +20,7 @@ class ProductImageController {
     const productImageService = new ProductImageService(productImageRepository)
     const fileName = await productImageService.create(imgName)
 
-    return res.json({ image: fileName })
+    return res.json(fileName)
   }
 }
 

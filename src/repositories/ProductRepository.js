@@ -99,8 +99,8 @@ class ProductRepository {
     return product
   }
 
-  async delete({ id }) {
-    const deleted = await knex('products').where({ id }).delete()
+  async delete(product_id) {
+    const deleted = await knex('products').where('id', product_id).delete()
     return deleted
   }
 

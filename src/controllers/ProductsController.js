@@ -40,11 +40,11 @@ class ProductsController {
   }
 
   async delete(req, res) {
-    const { id } = req.params
+    const product_id = req.params.id
 
     const productRepository = new ProductRepository()
     const productCreateService = new ProductCreateService(productRepository)
-    await productCreateService.delete({ id })
+    await productCreateService.delete(product_id)
 
     return res.json()
   }
