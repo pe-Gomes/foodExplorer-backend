@@ -54,6 +54,7 @@ To achieve the goals of the project, it was built a database with the following 
 
 ![Diagram of project's database](./public/db_diagram.png)
 
+Obs: In order to have admin privileges, it is needed to manually set to true the admin property in the Users table.
 
 ## API Reference
 If you want a shortcut, the settings for every HTTP request are available on the file `insomnia_settings.json`, so you can let Insomnia do the job.
@@ -203,4 +204,4 @@ The same as creating a favorite, but with a DELETE request.
 
 **Server:** Node, Express, Knex, jsonwebtoken, Jest, Multer, dotenv.
 
-This API was used with a front-end called **foodExplorer-frontend**: [Click here to check out the repo](URL).
+This API was used with a front-end called **foodExplorer-frontend**: [Click here to check out the repo](https://github.com/pe-Gomes/foodExplorer-frontend).
